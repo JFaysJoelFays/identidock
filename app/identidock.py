@@ -1,4 +1,4 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request 
 import requests
 import hashlib
 import redis
@@ -8,7 +8,6 @@ app = Flask(__name__)
 cache = redis.StrictRedis(host='redis', port=6379, db=0)
 salt = "UNIQUE_SALT"
 default_name = 'Joe Bloggs'
-
 
 @app.route('/', methods=['GET', 'POST'])
 def mainpage():
@@ -28,10 +27,9 @@ def mainpage():
               <p>You look like a:
               <img src="/monster/{1}"/>
               '''.format(name, name_hash)
-    footer = '</body></html>'        
-    
+    footer = '</body></html>'
+
     return header + body + footer
-    
     
 @app.route('/monster/<name>')
 def get_identicon(name):
@@ -46,6 +44,5 @@ def get_identicon(name):
     
     return Response(image, mimetype='image/png')
     
-    
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run (debug=True, host='0.0.0.0')
